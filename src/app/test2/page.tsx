@@ -1,4 +1,4 @@
-import styles from "@/app/page.module.css";
+import styles from "@/app/page.module.scss";
 import TestNumberTwo from "@/components/TestNumberTwo";
 
 export default function Home() {
