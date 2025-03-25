@@ -2,10 +2,17 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Person {
   id: string;
-  name: string;
-  age: number;
+  title: string;
+  firstname: string;
+  lastname: string;
+  birthday: string;
+  nationality: string;
+  citizenId: string;
+  gender: string;
+  prefix: string;
   phone: string;
-  email: string;
+  passport?: string;
+  expectedSalary: number;
 }
 
 interface PersonState {

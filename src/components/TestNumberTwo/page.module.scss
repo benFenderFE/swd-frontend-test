@@ -1,0 +1,54 @@
+.page {
+  width: 1200px;
+  padding: 60px;
+}
+
+.formContainer {
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid lightsteelblue;
+  margin-bottom: 48px;
+}
+
+.citizenRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .label {
+    min-width: 80px;
+    max-width: 180px;
+
+    span {
+      font-size: 12px;
+      color: #ff4d4f;
+    }
+  }
+
+  .formItemInline {
+    margin-bottom: 0;
+  }
+}
+
+.rowItemInline {
+  margin-bottom: 0;
+}
+
+.formButton {
+
+  .formBottomRow {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .formSubmitButton {
+    display: flex;
+    gap: 8px;
+    width: 200px;
+  }
+}
+
+
+
+
