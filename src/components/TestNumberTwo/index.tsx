@@ -115,39 +115,41 @@ const HomePage = () => {
 
   const columns = [
     {
-      title: t("name"),
+      title: t("pageTestTwo.name"),
       key: "name",
       render: (record: Person) =>
-        `${t(`title_${record.title}`)} ${record.firstname} ${record.lastname}`,
+        `${t(`pageTestTwo.title_${record.title}`)} ${record.firstname} ${record.lastname}`,
     },
     {
-      title: t("gender"),
+      title: t("pageTestTwo.gender"),
       dataIndex: "gender",
       key: "gender",
-      render: (value: string) => `${t(`gender_${value}`)}`,
+      render: (value: string) => `${t(`pageTestTwo.gender_${value}`)}`,
     },
     {
-      title: t("phone"),
+      title: t("pageTestTwo.phone"),
       key: "phone",
       render: (record: Person) => {
         return `+${record.prefix}${record.phone}`;
       },
     },
     {
-      title: t("nationality"),
+      title: t("pageTestTwo.nationality"),
       dataIndex: "nationality",
       key: "nationality",
       render: (value: string) =>
-        value ? t(`nationality_${value.toLowerCase()}`) : "-",
+        value ? t(`pageTestTwo.nationality_${value.toLowerCase()}`) : "-",
     },
     {
-      title: t("actions"),
+      title: t("pageTestTwo.actions"),
       key: "actions",
       render: (record: Person) => (
         <>
-          <Button onClick={() => handleEdit(record)}>{t("edit")}</Button>
+          <Button onClick={() => handleEdit(record)}>
+            {t("pageTestTwo.edit")}
+          </Button>
           <Button danger onClick={() => handleDelete(record.id)}>
-            {t("delete")}
+            {t("pageTestTwo.delete")}
           </Button>
         </>
       ),
@@ -157,14 +159,16 @@ const HomePage = () => {
   return (
     <div className={styles.page}>
       <div>
-        <h1>{t("form_and_table")}</h1>
+        <h1>{t("pageTestTwo.form_and_table")}</h1>
 
         <div className={styles.titleContainer}>
-          <span className={styles.title}>{t("test_description_title")}</span>
+          <span className={styles.title}>
+            {t("pageTestTwo.test_description_title")}
+          </span>
           <br />
           <span className={styles.titleDesc}>
             <Trans
-              i18nKey="test_description_html"
+              i18nKey="pageTestTwo.test_description_html"
               components={{ br: <br /> }}
             />
           </span>
@@ -178,21 +182,34 @@ const HomePage = () => {
             <Col span={6} xs={24} sm={8}>
               <Form.Item
                 name="title"
-                label={t("title")}
-                rules={[{ required: true, message: t("title_required") }]}
+                label={t("pageTestTwo.title")}
+                rules={[
+                  { required: true, message: t("pageTestTwo.title_required") },
+                ]}
               >
-                <Select placeholder={t("title_placeholder")}>
-                  <Select.Option value="Mr">{t("title_Mr")}</Select.Option>
-                  <Select.Option value="Mrs">{t("title_Mrs")}</Select.Option>
-                  <Select.Option value="Ms">{t("title_Ms")}</Select.Option>
+                <Select placeholder={t("pageTestTwo.title_placeholder")}>
+                  <Select.Option value="Mr">
+                    {t("pageTestTwo.title_Mr")}
+                  </Select.Option>
+                  <Select.Option value="Mrs">
+                    {t("pageTestTwo.title_Mrs")}
+                  </Select.Option>
+                  <Select.Option value="Ms">
+                    {t("pageTestTwo.title_Ms")}
+                  </Select.Option>
                 </Select>
               </Form.Item>
             </Col>
             <Col span={9} xs={24} sm={8}>
               <Form.Item
                 name="firstname"
-                label={t("firstname")}
-                rules={[{ required: true, message: t("firstname_required") }]}
+                label={t("pageTestTwo.firstname")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("pageTestTwo.firstname_required"),
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -200,8 +217,13 @@ const HomePage = () => {
             <Col span={9} xs={24} sm={8}>
               <Form.Item
                 name="lastname"
-                label={t("lastname")}
-                rules={[{ required: true, message: t("lastname_required") }]}
+                label={t("pageTestTwo.lastname")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("pageTestTwo.lastname_required"),
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -212,28 +234,38 @@ const HomePage = () => {
             <Col span={12} xs={24} sm={8}>
               <Form.Item
                 name="birthday"
-                label={t("birthday")}
-                rules={[{ required: true, message: t("birthday_required") }]}
+                label={t("pageTestTwo.birthday")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("pageTestTwo.birthday_required"),
+                  },
+                ]}
               >
                 <DatePicker
                   format="DD/MM/YYYY"
                   style={{ width: "100%" }}
-                  placeholder={t("birthday_placeholder")}
+                  placeholder={t("pageTestTwo.birthday_placeholder")}
                 />
               </Form.Item>
             </Col>
             <Col span={12} xs={24} sm={8}>
               <Form.Item
                 name="nationality"
-                label={t("nationality")}
-                rules={[{ required: true, message: t("nationality_required") }]}
+                label={t("pageTestTwo.nationality")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("pageTestTwo.nationality_required"),
+                  },
+                ]}
               >
-                <Select placeholder={t("nationality_placeholder")}>
+                <Select placeholder={t("pageTestTwo.nationality_placeholder")}>
                   <Select.Option value="Thai">
-                    {t("nationality_thai")}
+                    {t("pageTestTwo.nationality_thai")}
                   </Select.Option>
                   <Select.Option value="Other">
-                    {t("nationality_other")}
+                    {t("pageTestTwo.nationality_other")}
                   </Select.Option>
                 </Select>
               </Form.Item>
@@ -241,7 +273,7 @@ const HomePage = () => {
           </Row>
 
           {/* Row 3: CitizenID */}
-          <Form.Item label={t("citizen_id")} required>
+          <Form.Item label={t("pageTestTwo.citizen_id")} required>
             <div className={styles.citizenRow}>
               {["citizen1", "citizen2", "citizen3", "citizen4", "citizen5"].map(
                 (field, index) => {
@@ -264,13 +296,13 @@ const HomePage = () => {
                         rules={[
                           {
                             required: true,
-                            message: t("citizen_required", {
+                            message: t("pageTestTwo.citizen_required", {
                               digits: maxLength,
                             }),
                           },
                           {
                             len: maxLength,
-                            message: t("citizen_exact_digits", {
+                            message: t("pageTestTwo.citizen_exact_digits", {
                               digits: maxLength,
                             }),
                           },
@@ -295,13 +327,15 @@ const HomePage = () => {
             <Col span={24}>
               <Form.Item
                 name="gender"
-                label={t("gender")}
-                rules={[{ required: true, message: t("gender_required") }]}
+                label={t("pageTestTwo.gender")}
+                rules={[
+                  { required: true, message: t("pageTestTwo.gender_required") },
+                ]}
               >
                 <Radio.Group>
-                  <Radio value="male">{t("gender_male")}</Radio>
-                  <Radio value="female">{t("gender_female")}</Radio>
-                  <Radio value="unsex">{t("gender_unsex")}</Radio>
+                  <Radio value="male">{t("pageTestTwo.gender_male")}</Radio>
+                  <Radio value="female">{t("pageTestTwo.gender_female")}</Radio>
+                  <Radio value="unsex">{t("pageTestTwo.gender_unsex")}</Radio>
                 </Radio.Group>
               </Form.Item>
             </Col>
@@ -311,10 +345,13 @@ const HomePage = () => {
             <Col span={24}>
               <Form.Item
                 name="phone"
-                label={t("phone")}
+                label={t("pageTestTwo.phone")}
                 rules={[
-                  { required: true, message: t("phone_required") },
-                  { pattern: /^0[0-9]{9}$/, message: t("phone_invalid") },
+                  { required: true, message: t("pageTestTwo.phone_required") },
+                  {
+                    pattern: /^0[0-9]{9}$/,
+                    message: t("pageTestTwo.phone_invalid"),
+                  },
                 ]}
               >
                 <Input
@@ -341,8 +378,13 @@ const HomePage = () => {
             <Col span={24}>
               <Form.Item
                 name="passport"
-                label={t("passport_no")}
-                rules={[{ required: true, message: t("passport_required") }]}
+                label={t("pageTestTwo.passport_no")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("pageTestTwo.passport_required"),
+                  },
+                ]}
               >
                 <Input className={styles.inputPassportNumber} />
               </Form.Item>
@@ -355,9 +397,12 @@ const HomePage = () => {
                 <Form.Item
                   className={styles.rowItemInline}
                   name="expectedSalary"
-                  label={t("expected_salary")}
+                  label={t("pageTestTwo.expected_salary")}
                   rules={[
-                    { required: true, message: t("expected_salary_required") },
+                    {
+                      required: true,
+                      message: t("pageTestTwo.expected_salary_required"),
+                    },
                   ]}
                 >
                   <InputNumber<string>
@@ -375,11 +420,13 @@ const HomePage = () => {
                 <div className={styles.formSubmitButton}>
                   <Button block onClick={handleReset}>
                     {editingPerson
-                      ? t("cancel_edit_button")
-                      : t("reset_button")}
+                      ? t("pageTestTwo.cancel_edit_button")
+                      : t("pageTestTwo.reset_button")}
                   </Button>
                   <Button block type="primary" onClick={handleSubmit}>
-                    {editingPerson ? t("edit_button") : t("submit_button")}
+                    {editingPerson
+                      ? t("pageTestTwo.edit_button")
+                      : t("pageTestTwo.submit_button")}
                   </Button>
                 </div>
               </Col>
@@ -394,12 +441,12 @@ const HomePage = () => {
           onClick={handleDeleteSelected}
           disabled={selectedRowKeys.length === 0}
         >
-          {t("delete_selected")}
+          {t("pageTestTwo.delete_selected")}
         </Button>
 
         <span style={{ marginLeft: 8 }}>
           {selectedRowKeys.length > 0 &&
-            t("selected_count", { count: selectedRowKeys.length })}
+            t("pageTestTwo.selected_count", { count: selectedRowKeys.length })}
         </span>
       </div>
 
@@ -412,10 +459,14 @@ const HomePage = () => {
           pageSize: 3,
           showSizeChanger: false,
           nextIcon: (
-            <span className={styles.paginationButton}>{t("next")}</span>
+            <span className={styles.paginationButton}>
+              {t("pageTestTwo.next")}
+            </span>
           ),
           prevIcon: (
-            <span className={styles.paginationButton}>{t("previous")}</span>
+            <span className={styles.paginationButton}>
+              {t("pageTestTwo.previous")}
+            </span>
           ),
         }}
         rowKey="id"
