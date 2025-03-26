@@ -1,20 +1,62 @@
 .page {
-  width: 1200px;
-  padding: 60px;
+  width: 100%;
+  padding: 16px;
+
+  @media only screen and (min-width: 768px) {
+    width: 90%;
+    padding: 0 60px 60px 60px;
+    margin: 0 auto;
+  }
+
+}
+
+.titleContainer {
+  color: grey;
+  width: fit-content;
+  padding: 16px;
+  border: 1px solid darkgray;
+  border-radius: 12px;
+  margin-bottom: 16px;
+.title {
+}
+  .titleDesc {
+    font-size: 12px;
+  }
 }
 
 .formContainer {
   padding: 32px;
   border-radius: 16px;
   border: 1px solid lightsteelblue;
+  background-color: whitesmoke;
   margin-bottom: 48px;
+
+
+  .inputPhoneNumber {
+    width: 50%;
+
+     @media only screen and (max-width: 375px) {
+       width: 100%;
+     }
+  }
+
+  .inputPassportNumber {
+    width: 50%;
+
+    @media only screen and (max-width: 375px) {
+      width: 100%;
+    }
+  }
 }
 
+
+// CitizenID Form
 .citizenRow {
   display: flex;
   gap: 8px;
   align-items: center;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 
   .label {
     min-width: 80px;
@@ -29,7 +71,32 @@
   .formItemInline {
     margin-bottom: 0;
   }
+
+  .citizenInput {
+    text-align: center;
+  }
+
+  .digit1 {
+    width: 40px;
+  }
+
+  .digit2 {
+    width: 60px;
+  }
+
+  .digit4 {
+    width: 100px;
+  }
+
+  .digit5 {
+    width: 112px;
+  }
+
+  .dash {
+    margin: 0 4px;
+  }
 }
+
 
 .rowItemInline {
   margin-bottom: 0;
@@ -45,10 +112,26 @@
   .formSubmitButton {
     display: flex;
     gap: 8px;
-    width: 200px;
+    width: 180px;
+
+    @media only screen and (max-width: 375px) {
+      margin-top: 24px;
+    }
   }
 }
 
 
+// Pagination
+.paginationButton {
+  color: inherit;
+  cursor: pointer;
+
+  .ant-pagination-prev.ant-pagination-disabled {
+    background-color: #ff4d4f;
+    color: #d9d9d9;
+    cursor: default;
+    pointer-events: none;
+  }
+}
 
 
