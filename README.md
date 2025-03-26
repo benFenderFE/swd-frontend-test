@@ -40,7 +40,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 * Move Position swaps the grid layout top/bottom
 * Clicking any shape card shuffles the position
 
-* ## Test Number 2
+## Test Number 2
 Build a SPA (single page application) with Ant Design to manage personal data.
 - Perform Create, Edit, and Delete operations with Local Storage (data must persist after refresh)
 - Use Redux Toolkit instead of useState to manage form data
