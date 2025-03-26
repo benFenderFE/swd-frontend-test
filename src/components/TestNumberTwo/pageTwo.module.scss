@@ -8,6 +8,10 @@
     margin: 0 auto;
   }
 
+  @media only screen and (min-width: 375px) {
+    padding: 0;
+  }
+
 }
 
 .titleContainer {

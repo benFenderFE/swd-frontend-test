@@ -20,6 +20,11 @@
         margin-top: 8px;
         font-size: 12px;
     }
+
+
+    @media only screen and (max-width: 575px) {
+        width: 80%;
+    }
 }
 
 .buttonGroup {
@@ -42,6 +47,11 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+
+    @media only screen and (max-width: 575px) {
+        width: 100px;
+        height: 50px;
+    }
 
     &:hover {
         background-color: #ffa200;
