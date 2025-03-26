@@ -8,7 +8,7 @@ export default function Home() {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.page}>
+    <div className={styles.pageHome}>
       <div className={styles.title}>{t("home_title")}</div>
       <div className={styles.buttonsContainer}>
         <Button type="primary" href="/test1">

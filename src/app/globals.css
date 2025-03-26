@@ -5,6 +5,7 @@
 
 body {
     font-family: var(--font-geist-sans);
+    background: linear-gradient(to right, #FFA200, #6EDA78);
 }
 
 .ant-pagination-disabled span {

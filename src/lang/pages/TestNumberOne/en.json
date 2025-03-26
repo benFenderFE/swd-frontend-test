@@ -1,0 +1,13 @@
+{
+  "pageTestOne": {
+    "rotate_array_title": "Rotating Array",
+    "shift_left": "Shift Left",
+    "shift_right": "Shift Right",
+    "move_last_three": "Move last 3 to front",
+    "layout_title": "Layout & Style",
+    "layout_heading": "Test Details",
+    "test_description_html": "- Create a language switcher using i18next<br/>- Layout buttons with Ant Design<br/>- Create button shapes using SCSS<br/>- Each button has the following behaviors:<br/>* Move Shape rotates the shape row<br/>* Move Position swaps the grid layout top/bottom<br/>* Clicking any shape card shuffles the position",
+    "move_shape": "Move shape",
+    "move_position": "Move position"
+  }
+}
