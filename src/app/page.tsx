@@ -1,16 +1,21 @@
+"use client";
+
 import styles from "./page.module.scss";
 import { Button } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.page}>
-      this is home page
-      <div>
+      <div className={styles.title}>{t("home_title")}</div>
+      <div className={styles.buttonsContainer}>
         <Button type="primary" href="/test1">
-          test1 page button
+          {t("go_to_test1")}
         </Button>
         <Button type="primary" href="/test2">
-          test2 page button
+          {t("go_to_test2")}
         </Button>
       </div>
     </div>

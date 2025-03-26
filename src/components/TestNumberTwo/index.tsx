@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
 import {
   Table,
   Button,
@@ -12,18 +14,16 @@ import {
   Row,
   Col,
 } from "antd";
-import { useDispatch, useSelector } from "react-redux";
 import {
   addPerson,
   editPerson,
   deletePerson,
   Person,
 } from "@/redux/slice/personSlice";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { RootState } from "@/redux/store";
 import { v4 as uuidv4 } from "uuid";
 import styles from "@/components/TestNumberTwo/page.module.scss";
-import dayjs from "dayjs";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -51,7 +51,6 @@ const HomePage = () => {
   const handleEdit = (record: Person) => {
     setEditingPerson(record);
 
-    // แยก citizenId กลับเป็น 5 ช่อง
     const [c1 = "", c2 = "", c3 = "", c4 = "", c5 = ""] =
       record.citizenId.split("-");
 
@@ -157,15 +156,30 @@ const HomePage = () => {
 
   return (
     <div className={styles.page}>
+      <div>
+        <h1>{t("form_and_table")}</h1>
+
+        <div className={styles.titleContainer}>
+          <span className={styles.title}>{t("test_description_title")}</span>
+          <br />
+          <span className={styles.titleDesc}>
+            <Trans
+              i18nKey="test_description_html"
+              components={{ br: <br /> }}
+            />
+          </span>
+        </div>
+      </div>
+
       <div className={styles.formContainer}>
         <Form form={form} layout="horizontal">
           {/* Row 1: Title | Firstname | Lastname */}
           <Row gutter={16}>
-            <Col span={6}>
+            <Col span={6} xs={24} sm={8}>
               <Form.Item
                 name="title"
                 label={t("title")}
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: t("title_required") }]}
               >
                 <Select placeholder={t("title_placeholder")}>
                   <Select.Option value="Mr">{t("title_Mr")}</Select.Option>
@@ -174,29 +188,28 @@ const HomePage = () => {
                 </Select>
               </Form.Item>
             </Col>
-            <Col span={9}>
+            <Col span={9} xs={24} sm={8}>
               <Form.Item
                 name="firstname"
                 label={t("firstname")}
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: t("firstname_required") }]}
               >
                 <Input />
               </Form.Item>
             </Col>
-            <Col span={9}>
+            <Col span={9} xs={24} sm={8}>
               <Form.Item
                 name="lastname"
                 label={t("lastname")}
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: t("lastname_required") }]}
               >
                 <Input />
               </Form.Item>
             </Col>
           </Row>
-
           {/* Row 2: Birthday | Nationality */}
           <Row gutter={16}>
-            <Col span={12}>
+            <Col span={12} xs={24} sm={8}>
               <Form.Item
                 name="birthday"
                 label={t("birthday")}
@@ -209,11 +222,11 @@ const HomePage = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            <Col span={12} xs={24} sm={8}>
               <Form.Item
                 name="nationality"
                 label={t("nationality")}
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: t("nationality_required") }]}
               >
                 <Select placeholder={t("nationality_placeholder")}>
                   <Select.Option value="Thai">
@@ -228,35 +241,54 @@ const HomePage = () => {
           </Row>
 
           {/* Row 3: CitizenID */}
-          <div className={styles.citizenRow}>
-            <div className={styles.label}>
-              <span>*</span> {t("citizen_id")}
+          <Form.Item label={t("citizen_id")} required>
+            <div className={styles.citizenRow}>
+              {["citizen1", "citizen2", "citizen3", "citizen4", "citizen5"].map(
+                (field, index) => {
+                  const maxLength =
+                    index === 0 || index === 4
+                      ? 1
+                      : index === 1
+                        ? 4
+                        : index === 2
+                          ? 5
+                          : 2;
+
+                  const placeholder = "x".repeat(maxLength);
+
+                  return (
+                    <React.Fragment key={field}>
+                      <Form.Item
+                        name={field}
+                        className={styles.formItemInline}
+                        rules={[
+                          {
+                            required: true,
+                            message: t("citizen_required", {
+                              digits: maxLength,
+                            }),
+                          },
+                          {
+                            len: maxLength,
+                            message: t("citizen_exact_digits", {
+                              digits: maxLength,
+                            }),
+                          },
+                        ]}
+                      >
+                        <Input
+                          maxLength={maxLength}
+                          placeholder={placeholder}
+                          className={`${styles.citizenInput} ${styles[`digit${maxLength}`]}`}
+                        />
+                      </Form.Item>
+                      {index < 4 && <span className={styles.dash}>-</span>}
+                    </React.Fragment>
+                  );
+                },
+              )}
             </div>
-            {["citizen1", "citizen2", "citizen3", "citizen4", "citizen5"].map(
-              (field, index) => (
-                <React.Fragment key={field}>
-                  <Form.Item
-                    name={field}
-                    className={styles.formItemInline}
-                    rules={[{ required: true }]}
-                  >
-                    <Input
-                      maxLength={
-                        index === 0 || index === 4
-                          ? 1
-                          : index === 1
-                            ? 4
-                            : index === 2
-                              ? 5
-                              : 2
-                      }
-                    />
-                  </Form.Item>
-                  {index < 4 && "-"}
-                </React.Fragment>
-              ),
-            )}
-          </div>
+          </Form.Item>
 
           {/* Row 4: Gender */}
           <Row>
@@ -264,7 +296,7 @@ const HomePage = () => {
               <Form.Item
                 name="gender"
                 label={t("gender")}
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: t("gender_required") }]}
               >
                 <Radio.Group>
                   <Radio value="male">{t("gender_male")}</Radio>
@@ -274,7 +306,6 @@ const HomePage = () => {
               </Form.Item>
             </Col>
           </Row>
-
           {/* Row 5: Mobile Phone */}
           <Row>
             <Col span={24}>
@@ -287,6 +318,7 @@ const HomePage = () => {
                 ]}
               >
                 <Input
+                  className={styles.inputPhoneNumber}
                   addonBefore={
                     <Form.Item name="prefix" noStyle initialValue="66">
                       <Select style={{ width: 100 }}>
@@ -300,31 +332,26 @@ const HomePage = () => {
                     const value = e.target.value.replace(/\D/g, "");
                     form.setFieldsValue({ phone: value });
                   }}
-                  style={{ width: "50%" }}
                 />
               </Form.Item>
             </Col>
           </Row>
-
           {/* Row 6: Passport No */}
           <Row>
             <Col span={24}>
               <Form.Item
                 name="passport"
                 label={t("passport_no")}
-                rules={[
-                  { required: true, message: t("expected_salary_required") },
-                ]}
+                rules={[{ required: true, message: t("passport_required") }]}
               >
-                <Input style={{ width: "50%" }} />
+                <Input className={styles.inputPassportNumber} />
               </Form.Item>
             </Col>
           </Row>
-
           {/* Row 7: Expected Salary | Reset | Submit */}
           <div className={styles.formButton}>
             <Row gutter={16} align="bottom" className={styles.formBottomRow}>
-              <Col span={8}>
+              <Col span={8} xs={24} sm={8}>
                 <Form.Item
                   className={styles.rowItemInline}
                   name="expectedSalary"
@@ -333,10 +360,18 @@ const HomePage = () => {
                     { required: true, message: t("expected_salary_required") },
                   ]}
                 >
-                  <InputNumber style={{ width: "100%" }} min={0} />
+                  <InputNumber<string>
+                    style={{ width: "300px" }}
+                    formatter={(value) =>
+                      `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    }
+                    parser={(value) => value!.replace(/,/g, "")}
+                    min={"0"}
+                    addonAfter="บาท"
+                  />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col span={8} sm={8}>
                 <div className={styles.formSubmitButton}>
                   <Button block onClick={handleReset}>
                     {editingPerson
@@ -361,20 +396,27 @@ const HomePage = () => {
         >
           {t("delete_selected")}
         </Button>
+
         <span style={{ marginLeft: 8 }}>
-          {selectedRowKeys.length > 0 && `${selectedRowKeys.length} selected`}
+          {selectedRowKeys.length > 0 &&
+            t("selected_count", { count: selectedRowKeys.length })}
         </span>
       </div>
 
       <Table
         rowSelection={rowSelection}
+        scroll={{ x: "max-content" }}
         dataSource={people}
         columns={columns}
         pagination={{
-          pageSize: 5,
+          pageSize: 3,
           showSizeChanger: false,
-          nextIcon: <span>{t("next")}</span>,
-          prevIcon: <span>{t("previous")}</span>,
+          nextIcon: (
+            <span className={styles.paginationButton}>{t("next")}</span>
+          ),
+          prevIcon: (
+            <span className={styles.paginationButton}>{t("previous")}</span>
+          ),
         }}
         rowKey="id"
       />

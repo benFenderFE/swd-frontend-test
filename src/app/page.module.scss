@@ -1,18 +1,25 @@
 
 
 .page {
-
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  font-family: var(--font-geist-sans), serif;
-
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  min-height: 80vh;
+  gap: 16px;
+  background-color: #f9fafb;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 
