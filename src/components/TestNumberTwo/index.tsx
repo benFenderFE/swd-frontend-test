@@ -23,7 +23,7 @@ import {
 import { Trans, useTranslation } from "react-i18next";
 import { RootState } from "@/redux/store";
 import { v4 as uuidv4 } from "uuid";
-import styles from "@/components/TestNumberTwo/page.module.scss";
+import styles from "@/components/TestNumberTwo/pageTwo.module.scss";
 
 const HomePage = () => {
   const { t } = useTranslation();

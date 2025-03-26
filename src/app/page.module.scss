@@ -1,13 +1,11 @@
 
-
-.page {
+.pageHome {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 80vh;
   gap: 16px;
-  background-color: #f9fafb;
+  justify-content: center;
 }
 
 .title {
